@@ -1,0 +1,9 @@
+<mat-form-field appearance="standard">
+  <mat-label>Search</mat-label>
+  <input
+    matInput
+    (keyup)="search.emit($event)"
+    placeholder="Search something..."
+    #input
+  />
+</mat-form-field>

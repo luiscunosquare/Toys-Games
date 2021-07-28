@@ -1,0 +1,58 @@
+<h2 mat-dialog-title>{{ data ? 'Update item' : 'Add new item' }}</h2>
+<mat-dialog-content class="mat-typography">
+  <div class="row" [formGroup]="form">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <mat-form-field appearance="fill">
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="Name" formControlName="name" />
+      </mat-form-field>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <mat-form-field appearance="fill">
+        <mat-label>Company</mat-label>
+        <input matInput placeholder="Company" formControlName="company" />
+      </mat-form-field>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <mat-form-field appearance="fill">
+        <mat-label>Price</mat-label>
+        <input
+          matInput
+          currencyMask
+          [options]="{
+            prefix: '$ ',
+            thousands: '.',
+            decimal: ',',
+            allowNegative: false
+          }"
+          placeholder="Price"
+          formControlName="price"
+        />
+      </mat-form-field>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <mat-form-field appearance="fill">
+        <mat-label>Age restriction</mat-label>
+        <input matInput placeholder="Age restriction" formControlName="age_restriction" />
+      </mat-form-field>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <mat-form-field appearance="fill">
+        <mat-label>Description</mat-label>
+        <textarea matInput placeholder="..." formControlName="description"></textarea>
+      </mat-form-field>
+    </div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button [mat-dialog-close]="false">Cancel</button>
+  <button
+    mat-flat-button
+    color="primary"
+    [disabled]="form.invalid || loading"
+    [class.spinner]="loading"
+    (click)="saveOrUpdateToyGame()"
+  >
+    {{ data ? 'Update' : 'Add' }}
+  </button>
+</mat-dialog-actions>

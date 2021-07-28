@@ -1,0 +1,56 @@
+<app-searcher (search)="applyFilter($event)"></app-searcher>
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" matSort>
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+      <td mat-cell *matCellDef="let row">{{ row.name }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
+      <td mat-cell *matCellDef="let row">{{ row.description }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="age_restriction">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        Age restriction
+      </th>
+      <td mat-cell *matCellDef="let row">{{ row.age_restriction }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="company">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        Company
+      </th>
+      <td mat-cell *matCellDef="let row">{{ row.company }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="price">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        Price
+      </th>
+      <td mat-cell *matCellDef="let row">{{ row.price | currency : 'MXN' }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="options">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+      </th>
+      <td mat-cell *matCellDef="let row">
+        <button mat-icon-button (click)="openDialog(row)"><mat-icon color="primary" svgIcon="pencil"></mat-icon></button>
+        <button mat-icon-button (click)="deleteToyGame(row)"><mat-icon style="color: rgb(230, 198, 21);" svgIcon="delete"></mat-icon></button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="6">
+        No data matching the filter "{{ searchText }}"
+      </td>
+    </tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>
